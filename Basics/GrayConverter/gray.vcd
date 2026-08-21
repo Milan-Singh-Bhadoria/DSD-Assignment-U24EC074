@@ -1,0 +1,75 @@
+$date
+	Mon Jun 09 17:51:51 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module gray_tb $end
+$var wire 8 ! o [7:0] $end
+$var reg 8 " in [7:0] $end
+$scope module dut $end
+$var wire 8 # in [7:0] $end
+$var reg 8 $ o [7:0] $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 % i [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b11111111111111111111111111111111 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#10
+b1 !
+b1 $
+b11111111111111111111111111111111 %
+b1 "
+b1 #
+#20
+b11 !
+b11 $
+b11111111111111111111111111111111 %
+b10 "
+b10 #
+#30
+b10 !
+b10 $
+b11111111111111111111111111111111 %
+b11 "
+b11 #
+#40
+b110 !
+b110 $
+b11111111111111111111111111111111 %
+b100 "
+b100 #
+#50
+b111 !
+b111 $
+b11111111111111111111111111111111 %
+b101 "
+b101 #
+#60
+b101 !
+b101 $
+b11111111111111111111111111111111 %
+b110 "
+b110 #
+#70
+b100 !
+b100 $
+b11111111111111111111111111111111 %
+b111 "
+b111 #
+#80
