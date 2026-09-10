@@ -6,31 +6,28 @@ module Direct_cache #(parameter width = 32,
    parameter tag_bits = width - $clog2(block_number)- $clog2(block_size)  // 20bits
 )(
   input clk,rst,
-  input [width-1:0]core_out,          // address from core
-  input core_wr_en,                    // 1 = core writes , 0 = read
-  input [size-1:0]core_wdata,          // data core wants to write
-  input [block_size*size-1:0]memory_out,   // block data returned by main memory 
-  output reg read_en,                  // main_mem read enable
-  output reg mem_wr_en,                // main_mem write enable (for writeback)
-  output reg [block_size*size-1:0]memory_wdata, // block data sent to main memory (writeback)
-  output reg[size-1:0]core_in,         // data returned to core (reads)
-  output reg [width-1:0]memory_in,     // address sent to main memory (read or write)
+  input [width-1:0]core_out,
+  input core_wr_en,
+  input [size-1:0]core_wdata,
+  input [block_size*size-1:0]memory_out,
+  input mem_valid,                     // pulses when memory completes read OR write
+  output reg read_en,
+  output reg mem_wr_en,
+  output reg [block_size*size-1:0]memory_wdata,
+  output reg[size-1:0]core_in,
+  output reg [width-1:0]memory_in,
   output reg flag_hit,
   output reg flag_miss,
   output reg core_ready
   );
+   localparam latch     = 3'b000;   
+   localparam check     = 3'b001;
+   localparam hit       = 3'b010;
+   localparam writeback = 3'b011;
+   localparam refill    = 3'b100;
+   localparam fill      = 3'b101;
 
-  localparam init        = 4'b0000;
-  localparam check       = 4'b0001;
-  localparam hit_read    = 4'b0010;
-  localparam hit_write   = 4'b0011;
-  localparam writeback   = 4'b0100;
-  localparam wb_wait     = 4'b0101;
-  localparam refill      = 4'b0110;
-  localparam refill_wait = 4'b0111;
-  localparam fill        = 4'b1000;
-
-  reg [3:0] curr_state,next_state;
+  reg [2:0] curr_state,next_state;
 
    reg valid[block_number-1:0];
    reg dirty[block_number-1:0];
@@ -48,14 +45,12 @@ module Direct_cache #(parameter width = 32,
    reg             wr_buffer;
    reg [size-1:0]  wdata_buffer;
 
-   wire [($clog2(block_number)-1):0] index  = addr_buffer[(width-tag_bits)-1:$clog2(block_size)];
+   wire [($clog2(block_number)-1):0] index   = addr_buffer[(width-tag_bits)-1:$clog2(block_size)];
    wire [tag_bits-1:0]               req_tag = addr_buffer[width-1:$clog2(block_number)+$clog2(block_size)];
-   wire [$clog2(block_size)-1:0]     offset = addr_buffer[$clog2(block_size)-1:0];
+   wire [$clog2(block_size)-1:0]     offset  = addr_buffer[$clog2(block_size)-1:0];
 
-   // Reconstructed address of whatever block currently occupies index needed to write it back correctly if it's dirty and about to be evicted.
-   wire [width-1:0] evict_addr = {tag[index], index, {$clog2(block_size){1'b0}}};
+   wire [width-1:0] evict_addr = {tag[index], index};
 
-   // Merge core's write data into a freshly-fetched block (write-miss path)
    reg [(4*size)-1:0] merged_block;
    always@(*) begin
      merged_block = memory_out;
@@ -69,7 +64,6 @@ module Direct_cache #(parameter width = 32,
      end
    end
 
-   // Merge core's write data directly into the resident block (write-hit path)
    reg [(4*size)-1:0] hit_merged_block;
    always@(*) begin
      case(offset)
@@ -80,20 +74,21 @@ module Direct_cache #(parameter width = 32,
      endcase
    end
 
+   // Capture the request on the edge that ENTERS check 
    always@(posedge clk or posedge rst)begin
-     if(rst)begin
-       curr_state <= init;
-     end
-     else begin
-       curr_state <= next_state;
-       // Freeze the request ONCE, at entry, so nothing downstream can drift even if core_out/core_wr_en/core_wdata change mid-transaction.
-       if(curr_state==init) begin
-         addr_buffer  <= core_out;
-         wr_buffer    <= core_wr_en;
-         wdata_buffer <= core_wdata;
-       end
-     end
+    if(rst)
+    curr_state <= latch;
+   else
+    curr_state <= next_state;
    end
+
+  always@(posedge clk)begin
+   if(curr_state==latch) begin
+    addr_buffer  <= core_out;
+    wr_buffer    <= core_wr_en;
+    wdata_buffer <= core_wdata;
+   end
+  end
 
    always@(*)begin
     core_ready    = 1'b0;
@@ -104,88 +99,67 @@ module Direct_cache #(parameter width = 32,
     core_in       = {size{1'b0}};
     memory_in     = {width{1'b0}};
     memory_wdata  = {(block_size*size){1'b0}};
-    next_state    = init;
+    next_state    = check;
 
     case(curr_state)
-      init: begin
-       next_state = check;
-      end
+  latch: begin
+    next_state = check;
+  end
 
-      check: begin
-        if(valid[index] && tag[index]==req_tag) begin
-          next_state = wr_buffer ? hit_write : hit_read;
-        end
-        else begin
-          flag_miss = 1'b1;
-          if(valid[index] && dirty[index])
-            next_state = writeback;   // dirty block occupies this slot  flush it first
-          else
-            next_state = refill;      // slot is empty or clean safe to overwrite directly
-        end
-      end
+  check: begin
+    if(valid[index] && tag[index]==req_tag) begin
+      next_state = hit;
+    end
+    else begin
+      flag_miss = 1'b1;
+      next_state = (valid[index] && dirty[index]) ? writeback : refill;
+    end
+  end
 
-      hit_read: begin
-        flag_hit   = 1'b1;
-        core_ready = 1'b1;
-        case(offset)
-         2'b00 : core_in = block[index][size-1:0];
-         2'b01 : core_in = block[index][2*size-1:size];
-         2'b10 : core_in = block[index][3*size-1:2*size];
-         2'b11 : core_in = block[index][4*size-1:3*size];
-        endcase
-        next_state = init;
-      end
+  hit: begin
+    flag_hit   = 1'b1;
+    core_ready = 1'b1;
+    if(!wr_buffer) begin
+      case(offset)
+       2'b00 : core_in = block[index][size-1:0];
+       2'b01 : core_in = block[index][2*size-1:size];
+       2'b10 : core_in = block[index][3*size-1:2*size];
+       2'b11 : core_in = block[index][4*size-1:3*size];
+      endcase
+    end
+    next_state = latch;   // now returns through latch to re-capture
+  end
 
-      hit_write: begin
-        flag_hit   = 1'b1;
-        core_ready = 1'b1;
-        next_state = init;
-        // actual array write happens in the clocked block below
-      end
+    writeback: begin
+       mem_wr_en    = ~mem_valid;            
+       memory_in    = evict_addr;
+       memory_wdata = block[index];
+       next_state   = mem_valid ? refill : writeback;
+    end
 
-      writeback: begin
-        mem_wr_en    = 1'b1;
-        memory_in    = evict_addr;
-        memory_wdata = block[index];
-        next_state   = wb_wait;
-      end
+    refill: begin
+      read_en    = ~mem_valid;              // drop the request the instant it's acknowledged
+      memory_in  = addr_buffer[width-1:$clog2(block_size)];
+      next_state = mem_valid ? fill : refill;
+    end
 
-      wb_wait: begin
-        mem_wr_en  = 1'b1;   // hold write valid one more cycle for memory to latch
-        memory_in  = evict_addr;
-        memory_wdata = block[index]; 
-        next_state = refill;
-      end
-
-      refill: begin
-        read_en    = 1'b1;
-        memory_in  = addr_buffer;
-        next_state = refill_wait;
-      end
-
-      refill_wait: begin
-        read_en    = 1'b1;
-        memory_in  = addr_buffer;
-        next_state = fill;
-      end
-
-      fill: begin
-        case(offset)
-         2'b00 : core_in = memory_out[size-1:0];
-         2'b01 : core_in = memory_out[2*size-1:size];
-         2'b10 : core_in = memory_out[3*size-1:2*size];
-         2'b11 : core_in = memory_out[4*size-1:3*size];
-        endcase
-        core_ready = 1'b1;
-        next_state = init;
-      end
-
-     default : next_state = init;
+  fill: begin
+    case(offset)
+     2'b00 : core_in = memory_out[size-1:0];
+     2'b01 : core_in = memory_out[2*size-1:size];
+     2'b10 : core_in = memory_out[3*size-1:2*size];
+     2'b11 : core_in = memory_out[4*size-1:3*size];
     endcase
-   end
+    core_ready = 1'b1;
+    next_state = latch;   // returns through latch to re-capture
+  end
+
+ default : next_state = latch;
+endcase
+end
 
    always@(posedge clk)begin
-     if(curr_state==hit_write) begin
+     if(curr_state==hit && wr_buffer) begin
        block[index] <= hit_merged_block;
        dirty[index] <= 1'b1;
      end
@@ -193,65 +167,15 @@ module Direct_cache #(parameter width = 32,
        block[index] <= wr_buffer ? merged_block : memory_out;
        tag[index]   <= req_tag;
        valid[index] <= 1'b1;
-       dirty[index] <= wr_buffer;   // dirty only if this fill came from a write-miss
+       dirty[index] <= wr_buffer;
      end
    end
 
-   always @(posedge clk) begin
-   $display("T=%0t | st=%0d idx=%0d valid=%b dirty=%b tag=%h block=%h flag_hit=%h flag_miss=%h",
-           $time,
-           curr_state,
-           index,
-           valid[index],
-           dirty[index],
-           tag[index],
-           block[index],
-           flag_hit,
-           flag_miss);
-  end
+  always @(posedge clk) begin
+ $display("T=%0t | st=%0d idx=%0d valid=%b dirty=%b tag=%h block=%h hit=%b miss=%b | ren=%b wen=%b mvalid=%b mem_in=%0d mem_wdata=%h mem_out=%h",
+         $time, curr_state, index, valid[index], dirty[index], tag[index], block[index],
+         flag_hit, flag_miss,
+         read_en, mem_wr_en, mem_valid, memory_in, memory_wdata, memory_out);
+end
 
-   memory m1(
-     .clk(clk),
-     .read_en(read_en),
-     .write_en(mem_wr_en),
-     .memory_in(memory_in),
-     .memory_wdata(memory_wdata),
-     .memory_out(memory_out)
-   );
-
- endmodule
-
-
-/////////////////// MAIN MEMORY ////////////////////
-module memory#(parameter width = 32,
-   parameter depth = 65536,
-   parameter size = 8
-  )(
-   input clk,
-   input read_en,
-   input write_en,
-   input [width-1:0]memory_in,
-   input [4*size-1:0]memory_wdata,
-   output reg [4*size-1:0]memory_out
- );
-   reg [size-1:0]memory[depth-1:0];
-   integer i;
-
-   initial begin
-     for(i=0;i<depth;i=i+1)begin
-         memory[i] = (2*i)+1;
-     end
-   end
-
-   always@(posedge clk)begin
-    if(write_en) begin
-     memory[memory_in]   <= memory_wdata[size-1:0];
-     memory[memory_in+1] <= memory_wdata[2*size-1:size];
-     memory[memory_in+2] <= memory_wdata[3*size-1:2*size];
-     memory[memory_in+3] <= memory_wdata[4*size-1:3*size];
-    end
-    else if(read_en )begin
-     memory_out <= {memory[memory_in+3],memory[memory_in+2],memory[memory_in+1],memory[memory_in]};
-    end
-   end
  endmodule
