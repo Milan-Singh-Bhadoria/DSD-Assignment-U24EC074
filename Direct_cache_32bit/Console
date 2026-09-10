@@ -1,0 +1,121 @@
+T=5000 | st=0 idx=x valid=x dirty=x tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=xxxxxxxx
+T=15000 | st=0 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=xxxxxxxx
+T=25000 | st=1 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=xxxxxxxx
+T=35000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=45000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=55000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=65000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=75000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=85000 | MEM READ   addr=1304  data=c7c5c3c1
+T=85000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1304 mem_wdata=00000000 mem_out=xxxxxxxx
+T=95000 | st=4 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=1304 mem_wdata=00000000 mem_out=c7c5c3c1
+T=105000 | addr=00001461 wr=0 wdata=00 -> core_in=c3 hit=0 miss=0
+T=105000 | st=5 idx=280 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=115000 | st=0 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=125000 | st=1 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=135000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=145000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=155000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=165000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=175000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=185000 | MEM READ   addr=5195  data=5f5d5b59
+T=185000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=5195 mem_wdata=00000000 mem_out=c7c5c3c1
+T=195000 | st=4 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=5195 mem_wdata=00000000 mem_out=5f5d5b59
+T=205000 | addr=0000512d wr=0 wdata=00 -> core_in=5b hit=0 miss=0
+T=205000 | st=5 idx=75 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=215000 | st=0 idx=75 valid=1 dirty=0 tag=00005 block=5f5d5b59 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=225000 | st=1 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=235000 | addr=00001461 wr=0 wdata=00 -> core_in=c3 hit=1 miss=0
+T=235000 | st=2 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=245000 | st=0 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=255000 | st=1 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=5f5d5b59
+T=265000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=275000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=285000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=295000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=305000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=315000 | MEM READ   addr=15509  data=afadaba9
+T=315000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15509 mem_wdata=00000000 mem_out=5f5d5b59
+T=325000 | st=4 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=15509 mem_wdata=00000000 mem_out=afadaba9
+T=335000 | addr=0000f257 wr=0 wdata=00 -> core_in=af hit=0 miss=0
+T=335000 | st=5 idx=149 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=345000 | st=0 idx=149 valid=1 dirty=0 tag=0000f block=afadaba9 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=355000 | st=1 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=365000 | addr=00001461 wr=0 wdata=00 -> core_in=c3 hit=1 miss=0
+T=365000 | st=2 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=375000 | st=0 idx=280 valid=1 dirty=0 tag=00001 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=385000 | st=1 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=afadaba9
+T=395000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=405000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=415000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=425000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=435000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=445000 | MEM READ   addr=15757  data=6f6d6b69
+T=445000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=15757 mem_wdata=00000000 mem_out=afadaba9
+T=455000 | st=4 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=15757 mem_wdata=00000000 mem_out=6f6d6b69
+T=465000 | addr=0000f634 wr=0 wdata=00 -> core_in=69 hit=0 miss=0
+T=465000 | st=5 idx=397 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=6f6d6b69
+T=475000 | st=0 idx=397 valid=1 dirty=0 tag=0000f block=6f6d6b69 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=6f6d6b69
+T=485000 | st=1 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=6f6d6b69
+T=495000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=505000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=515000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=525000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=535000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=545000 | MEM READ   addr=8026  data=d7d5d3d1
+T=545000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8026 mem_wdata=00000000 mem_out=6f6d6b69
+T=555000 | st=4 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=8026 mem_wdata=00000000 mem_out=d7d5d3d1
+T=565000 | addr=00007d6b wr=0 wdata=00 -> core_in=d7 hit=0 miss=0
+T=565000 | st=5 idx=858 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=d7d5d3d1
+T=575000 | st=0 idx=858 valid=1 dirty=0 tag=00007 block=d7d5d3d1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=d7d5d3d1
+T=585000 | st=1 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=d7d5d3d1
+T=595000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=605000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=615000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=625000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=635000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=645000 | MEM READ   addr=8728  data=c7c5c3c1
+T=645000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=8728 mem_wdata=00000000 mem_out=d7d5d3d1
+T=655000 | st=4 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=8728 mem_wdata=00000000 mem_out=c7c5c3c1
+T=665000 | addr=00008863 wr=0 wdata=00 -> core_in=c7 hit=0 miss=0
+T=665000 | st=5 idx=536 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=675000 | st=0 idx=536 valid=1 dirty=0 tag=00008 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=685000 | st=1 idx=75 valid=1 dirty=0 tag=00005 block=5f5d5b59 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=695000 | addr=0000512d wr=0 wdata=00 -> core_in=5b hit=1 miss=0
+T=695000 | st=2 idx=75 valid=1 dirty=0 tag=00005 block=5f5d5b59 hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=705000 | st=0 idx=75 valid=1 dirty=0 tag=00005 block=5f5d5b59 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=715000 | st=1 idx=536 valid=1 dirty=0 tag=00008 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=725000 | addr=00008863 wr=0 wdata=00 -> core_in=c7 hit=1 miss=0
+T=725000 | st=2 idx=536 valid=1 dirty=0 tag=00008 block=c7c5c3c1 hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=735000 | st=0 idx=536 valid=1 dirty=0 tag=00008 block=c7c5c3c1 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=745000 | st=1 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=755000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=765000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=775000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=785000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=795000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=805000 | MEM READ   addr=0  data=07050301
+T=805000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=c7c5c3c1
+T=815000 | st=4 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=825000 | addr=00000000 wr=0 wdata=00 -> core_in=01 hit=0 miss=0
+T=825000 | st=5 idx=0 valid=0 dirty=0 tag=xxxxx block=xxxxxxxx hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=835000 | st=0 idx=0 valid=1 dirty=0 tag=00000 block=07050301 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=845000 | st=1 idx=0 valid=1 dirty=0 tag=00000 block=07050301 hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=855000 | addr=00000000 wr=1 wdata=aa -> core_in=00 hit=1 miss=0
+T=855000 | st=2 idx=0 valid=1 dirty=0 tag=00000 block=07050301 hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=865000 | st=0 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=875000 | st=1 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=885000 | addr=00000000 wr=0 wdata=00 -> core_in=aa hit=1 miss=0
+T=885000 | st=2 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=1 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=895000 | st=0 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=905000 | st=1 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=1 | ren=0 wen=0 mvalid=0 mem_in=0 mem_wdata=00000000 mem_out=07050301
+T=915000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=925000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=935000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=945000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=955000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=965000 | MEM WRITE  addr=0  data=070503aa
+T=965000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=1 mvalid=0 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=975000 | st=3 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=0 wen=0 mvalid=1 mem_in=0 mem_wdata=070503aa mem_out=07050301
+T=985000 | st=4 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1024 mem_wdata=00000000 mem_out=07050301
+T=995000 | st=4 idx=0 valid=1 dirty=1 tag=00000 block=070503aa hit=0 miss=0 | ren=1 wen=0 mvalid=0 mem_in=1024 mem_wdata=00000000 mem_out=07050301
